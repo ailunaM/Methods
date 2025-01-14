@@ -9,7 +9,7 @@ export class Character {
 
   levelUp() {
     if (this.health === 0) {
-      throw new Error("you can't increase the level of a deceased person");
+      throw new Error("Cannot level up a dead character");
     }
     this.level++;
     this.attack *= 1.2;
@@ -20,9 +20,12 @@ export class Character {
   damage(points) {
     if (this.health >= 0) {
       const damage = points * (1 - this.defence / 100);
-      this.health - +damage;
+      this.health -= damage;
     }
   }
 }
 
 const hero = new Character("hero", 1, 10, 5, 50);
+hero.levelUp();
+hero.damage(20);
+hero.damage(100);
